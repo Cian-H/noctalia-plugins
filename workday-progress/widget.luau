@@ -55,8 +55,9 @@ local function render()
   -- Concentric corner radius: R_inner = R_outer - padding = 12 - 4 = 8
   local cornerRadius = math.max(2, barRadius - pad)
 
-  -- 2px buffer to guarantee the scissor box never clips the rounded corner tips
-  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2) - 2)
+  -- Inset trackHeight by (barRadius * 2) so the rounded corners never overshoot the slot clip rect
+  local verticalBuffer = barRadius * 2
+  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2) - verticalBuffer)
 
   local fillHeight = math.round(trackHeight * percent)
   local emptyHeight = trackHeight - fillHeight
