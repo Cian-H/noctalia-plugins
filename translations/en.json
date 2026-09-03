@@ -16,29 +16,40 @@
       "label": "End Minute",
       "description": "Minute when the workday ends (0-59)"
     },
-    "display_format": {
-      "label": "Display Format",
-      "description": "How to display progress on the bar",
+    "work_days": {
+      "label": "Work Days",
+      "description": "Which days of the week are considered workdays",
       "options": {
-        "compact": "Compact (50%)",
-        "percent": "Detailed Percent (50.0%)",
-        "time_remaining": "Time Remaining (4h 0m left)",
-        "full": "Full (50% • 4h 0m left)"
+        "weekdays": "Monday – Friday",
+        "all": "Every Day"
       }
     },
-    "glyph": {
-      "label": "Icon",
-      "description": "Icon to display on the bar widget"
+    "direction": {
+      "label": "Progress Direction",
+      "description": "Whether the bar fills as time elapses or drains as time runs out",
+      "options": {
+        "elapsed": "Fill Up (Elapsed Time)",
+        "remaining": "Drain Down (Remaining Time)"
+      }
     },
-    "show_glyph": {
-      "label": "Show Icon",
-      "description": "Whether to display the icon alongside progress"
+    "color_mode": {
+      "label": "Color Mode",
+      "description": "Color transition style throughout the workday",
+      "options": {
+        "dynamic": "Dynamic Good to Bad Transition",
+        "accent": "Theme Primary Accent"
+      }
+    },
+    "track_padding": {
+      "label": "Bar Padding",
+      "description": "Padding between outer bar container and inner progress track (px)"
     }
   },
   "status": {
     "not_started": "Workday Not Started",
     "in_progress": "Workday In Progress",
-    "completed": "Workday Complete"
+    "completed": "Workday Complete",
+    "weekend": "Weekend (Off)"
   },
   "panel": {
     "title": "Workday Progress",
