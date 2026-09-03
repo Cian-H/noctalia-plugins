@@ -45,10 +45,15 @@ local function render()
 
   local thickness = noctalia.getSetting("bar.workday.thickness") or 64
   local marginEnds = noctalia.getSetting("bar.workday.margin_ends") or 52
-  local barHeight = math.max(0, outHeight - (marginEnds * 2))
+  local barPadding = noctalia.getSetting("bar.workday.padding") or 8
 
-  local fillHeight = math.round(barHeight * percent)
-  local emptyHeight = barHeight - fillHeight
+  -- Inset padding so the bar floats inside the panel and doesn't completely cover it
+  local padX = 8
+  local trackWidth = math.max(16, thickness - (padX * 2))
+  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2))
+
+  local fillHeight = math.round(trackHeight * percent)
+  local emptyHeight = trackHeight - fillHeight
 
   -- Smoothly transition from the theme's primary color to its secondary color
   local themeName = noctalia.getSetting("theme.builtin") or "Tokyo-Night"
@@ -57,19 +62,18 @@ local function render()
 
   local children = {}
   if emptyHeight > 0 then
-    table.insert(children, ui.box({
-      width = thickness,
+    table.insert(children, ui.spacer({
+      width = trackWidth,
       height = emptyHeight,
-      fill = "surface_variant/0.25",
     }))
   end
 
   if fillHeight > 0 then
     table.insert(children, ui.box({
-      width = thickness,
+      width = trackWidth,
       height = fillHeight,
       fill = fillColor,
-      radius = 12,
+      radius = 10,
     }))
   end
 
@@ -82,8 +86,10 @@ local function render()
   barWidget.setTooltip(tooltip)
 
   barWidget.render(ui.column({
-    width = thickness,
-    height = barHeight,
+    width = trackWidth,
+    height = trackHeight,
+    fill = "surface_variant/0.3",
+    radius = 10,
     gap = 0,
   }, children))
 end
