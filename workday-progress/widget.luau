@@ -45,16 +45,15 @@ local function render()
 
   local thickness = noctalia.getSetting("bar.workday.thickness") or 64
   local marginEnds = noctalia.getSetting("bar.workday.margin_ends") or 52
-  local barPadding = noctalia.getSetting("bar.workday.padding") or 8
+  local barPadding = noctalia.getSetting("bar.workday.padding") or 4
 
-  -- Inset padding so the bar floats comfortably inside the panel
-  local padX = 10
-  local trackWidth = math.max(16, thickness - (padX * 2))
+  -- Halved padding: uniform 4px inset on all sides (left, right, top, bottom)
+  local pad = 4
+  local trackWidth = math.max(16, thickness - (pad * 2))
   local pillRadius = math.floor(trackWidth / 2)
 
-  -- Account for bar shadow/concave insets + padding so ends never get clipped by the slot
-  local verticalInset = marginEnds + barPadding + 16
-  local trackHeight = math.max(16, outHeight - (verticalInset * 2))
+  -- Exact span matching the slot so the ends are concentric and tangential to the bar ends
+  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2))
 
   local fillHeight = math.round(trackHeight * percent)
   local emptyHeight = trackHeight - fillHeight
