@@ -38,13 +38,14 @@ local function render()
   end
   
   -- Determine widget thickness and margins from the bar it's placed in
-  -- We assume it's placed in 'workday' by default, or fallback
   local thickness = noctalia.getSetting("bar.workday.thickness") or 64
   local marginEnds = noctalia.getSetting("bar.workday.margin_ends") or 52
   local barHeight = outHeight - (marginEnds * 2)
-  
-  local fillHeight = barHeight * percent
-  local emptyHeight = barHeight - fillHeight
+
+  -- Use percentages instead of absolute pixels so multiple instances with different dimensions
+  -- don't fight over the same SVG's aspect ratio!
+  local fillPercent = percent * 100
+  local emptyPercent = (1.0 - percent) * 100
 
   -- Color logic from v4: Green to Red
   local colorCode = hslToHex((1.0 - percent) * 0.33, 0.85, 0.60)
@@ -54,11 +55,11 @@ local function render()
   local svgPath = dataDir .. "/progress.svg"
   
   local svg = string.format([[
-<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="%d" height="%d" fill="#1e1e1e" />
-  <rect x="0" y="%d" width="%d" height="%d" fill="%s" rx="8" />
+<svg width="100%%" height="100%%" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="100%%" height="100%%" fill="#1e1e1e" />
+  <rect x="0" y="%.2f%%" width="100%%" height="%.2f%%" fill="%s" rx="8" />
 </svg>
-]], thickness, barHeight, thickness, barHeight, thickness, barHeight, emptyHeight, thickness, fillHeight, colorCode)
+]], emptyPercent, fillPercent, colorCode)
   
   noctalia.writeFile(svgPath, svg)
   
@@ -70,7 +71,7 @@ local function render()
   }
   barWidget.setTooltip(tooltip)
   
-  -- Watch=true so noctalia automatically hot-reloads the image when we overwrite it
+  -- Pass the dimensions explicitly to barWidget.setImage so it sets the layout size
   barWidget.setImage(svgPath, true, thickness, barHeight)
 end
 
