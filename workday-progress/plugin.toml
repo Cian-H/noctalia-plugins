@@ -44,36 +44,51 @@ default = 0
 min = 0
 max = 59
 
+[[setting]]
+key = "work_days"
+type = "select"
+label_key = "settings.work_days.label"
+description_key = "settings.work_days.description"
+default = "weekdays"
+options = [
+  { value = "weekdays", label_key = "settings.work_days.options.weekdays" },
+  { value = "all", label_key = "settings.work_days.options.all" },
+]
+
+[[setting]]
+key = "direction"
+type = "select"
+label_key = "settings.direction.label"
+description_key = "settings.direction.description"
+default = "elapsed"
+options = [
+  { value = "elapsed", label_key = "settings.direction.options.elapsed" },
+  { value = "remaining", label_key = "settings.direction.options.remaining" },
+]
+
+[[setting]]
+key = "color_mode"
+type = "select"
+label_key = "settings.color_mode.label"
+description_key = "settings.color_mode.description"
+default = "dynamic"
+options = [
+  { value = "dynamic", label_key = "settings.color_mode.options.dynamic" },
+  { value = "accent", label_key = "settings.color_mode.options.accent" },
+]
+
+[[setting]]
+key = "track_padding"
+type = "int"
+label_key = "settings.track_padding.label"
+description_key = "settings.track_padding.description"
+default = 4
+min = 0
+max = 16
+
 [[widget]]
 id = "progress"
 entry = "widget.luau"
-
-[[widget.setting]]
-key = "display_format"
-type = "select"
-label_key = "settings.display_format.label"
-description_key = "settings.display_format.description"
-default = "compact"
-options = [
-  { value = "compact", label_key = "settings.display_format.options.compact" },
-  { value = "percent", label_key = "settings.display_format.options.percent" },
-  { value = "time_remaining", label_key = "settings.display_format.options.time_remaining" },
-  { value = "full", label_key = "settings.display_format.options.full" },
-]
-
-[[widget.setting]]
-key = "glyph"
-type = "glyph"
-label_key = "settings.glyph.label"
-description_key = "settings.glyph.description"
-default = "briefcase"
-
-[[widget.setting]]
-key = "show_glyph"
-type = "bool"
-label_key = "settings.show_glyph.label"
-description_key = "settings.show_glyph.description"
-default = true
 
 [widget.actions]
 left = "panel-toggle cian-h/workday-progress:summary"
