@@ -1,0 +1,7 @@
+# devenv / direnv
+.devenv/
+.devenv.flake.nix
+.direnv/
+
+# Editor / LSP cache
+.luau-lsp/
