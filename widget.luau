@@ -46,14 +46,17 @@ local function render()
   local thickness = noctalia.getSetting("bar.workday.thickness") or 64
   local marginEnds = noctalia.getSetting("bar.workday.margin_ends") or 52
   local barPadding = noctalia.getSetting("bar.workday.padding") or 4
+  local barRadius = noctalia.getSetting("bar.workday.radius") or 12
 
-  -- Halved padding: uniform 4px inset on all sides (left, right, top, bottom)
+  -- 4px uniform padding: trackWidth = 64 - 8 = 56
   local pad = 4
   local trackWidth = math.max(16, thickness - (pad * 2))
-  local pillRadius = math.floor(trackWidth / 2)
 
-  -- Exact span matching the slot so the ends are concentric and tangential to the bar ends
-  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2))
+  -- Concentric corner radius: R_inner = R_outer - padding = 12 - 4 = 8
+  local cornerRadius = math.max(2, barRadius - pad)
+
+  -- 2px buffer to guarantee the scissor box never clips the rounded corner tips
+  local trackHeight = math.max(16, outHeight - ((marginEnds + barPadding) * 2) - 2)
 
   local fillHeight = math.round(trackHeight * percent)
   local emptyHeight = trackHeight - fillHeight
@@ -76,7 +79,7 @@ local function render()
       width = trackWidth,
       height = fillHeight,
       fill = fillColor,
-      radius = pillRadius,
+      radius = cornerRadius,
     }))
   end
 
@@ -92,7 +95,7 @@ local function render()
     width = trackWidth,
     height = trackHeight,
     fill = "surface_variant/0.3",
-    radius = pillRadius,
+    radius = cornerRadius,
     gap = 0,
   }, children))
 end
