@@ -18,6 +18,8 @@ local function render()
     { key = noctalia.tr("panel.remaining"), value = stats.formattedRemaining },
   }
 
+  barWidget.setColor(color)
+
   barWidget.render(ui.progress({
     progress = stats.percent / 100.0,
     tooltip = tooltip,
