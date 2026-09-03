@@ -66,3 +66,7 @@ end
 function onConfigChanged()
   render()
 end
+
+-- Initial render on load
+render()
+
