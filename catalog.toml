@@ -10,5 +10,5 @@ author = "Cian Hughes"
 license = "MIT"
 icon = "briefcase"
 description = "Tracks and displays progress through the work day."
-plugin_api = 9
+plugin_api = 14
 tags = ["bar", "panel", "utility", "time"]

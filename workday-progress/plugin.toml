@@ -1,7 +1,7 @@
 id = "cian-h/workday-progress"
 name = "Workday Progress"
 version = "1.0.0"
-plugin_api = 9
+plugin_api = 14
 author = "Cian Hughes"
 license = "MIT"
 tags = ["bar", "panel", "utility", "time"]
