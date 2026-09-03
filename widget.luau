@@ -121,6 +121,20 @@ local function computeLayout(isVertical: boolean, outName: string?): LayoutGeome
   }
 end
 
+local function resolveIsVertical(): boolean
+  if barWidget.isVertical() then
+    return true
+  end
+  -- At script startup before Noctalia's first doLayout() pass,
+  -- barWidget.isVertical() defaults to false in C++.
+  -- Check if bar.workday is positioned on a vertical screen edge.
+  local pos = noctalia.getSetting("bar.workday.position") :: string?
+  if pos == "left" or pos == "right" then
+    return true
+  end
+  return false
+end
+
 local function render()
   local stats = calculate.getStats()
   local percent = math.clamp(stats.percent / 100, 0, 1)
@@ -128,7 +142,7 @@ local function render()
   local direction = (noctalia.getConfig("direction") :: string?) or "elapsed"
   local displayPercent = if direction == "remaining" then (1.0 - percent) else percent
 
-  local isVertical = barWidget.isVertical()
+  local isVertical = resolveIsVertical()
   local outName = barWidget.outputName()
   local layout = computeLayout(isVertical, outName)
 
