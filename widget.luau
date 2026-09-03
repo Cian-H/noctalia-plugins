@@ -55,6 +55,8 @@ local function render()
     { key = noctalia.tr("panel.elapsed"), value = stats.formattedElapsed },
     { key = noctalia.tr("panel.remaining"), value = stats.formattedRemaining },
   })
+
+  barWidget.setVisible(true)
 end
 
 function update()
