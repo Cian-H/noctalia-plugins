@@ -1,28 +1,50 @@
 {
-  "settings.start_hour.label": "Start Hour",
-  "settings.start_hour.description": "Hour when the workday starts (0-23)",
-  "settings.start_minute.label": "Start Minute",
-  "settings.start_minute.description": "Minute when the workday starts (0-59)",
-  "settings.end_hour.label": "End Hour",
-  "settings.end_hour.description": "Hour when the workday ends (0-23)",
-  "settings.end_minute.label": "End Minute",
-  "settings.end_minute.description": "Minute when the workday ends (0-59)",
-  "settings.display_format.label": "Display Format",
-  "settings.display_format.description": "How to display progress on the bar",
-  "settings.display_format.options.compact": "Compact (50%)",
-  "settings.display_format.options.percent": "Detailed Percent (50.0%)",
-  "settings.display_format.options.time_remaining": "Time Remaining (4h 0m left)",
-  "settings.display_format.options.full": "Full (50% • 4h 0m left)",
-  "settings.glyph.label": "Icon",
-  "settings.glyph.description": "Icon to display on the bar widget",
-  "settings.show_glyph.label": "Show Icon",
-  "settings.show_glyph.description": "Whether to display the icon alongside progress",
-  "status.not_started": "Workday Not Started",
-  "status.in_progress": "Workday In Progress",
-  "status.completed": "Workday Complete",
-  "panel.title": "Workday Progress",
-  "panel.schedule": "Schedule",
-  "panel.elapsed": "Elapsed",
-  "panel.remaining": "Remaining",
-  "panel.progress": "Progress"
+  "settings": {
+    "start_hour": {
+      "label": "Start Hour",
+      "description": "Hour when the workday starts (0-23)"
+    },
+    "start_minute": {
+      "label": "Start Minute",
+      "description": "Minute when the workday starts (0-59)"
+    },
+    "end_hour": {
+      "label": "End Hour",
+      "description": "Hour when the workday ends (0-23)"
+    },
+    "end_minute": {
+      "label": "End Minute",
+      "description": "Minute when the workday ends (0-59)"
+    },
+    "display_format": {
+      "label": "Display Format",
+      "description": "How to display progress on the bar",
+      "options": {
+        "compact": "Compact (50%)",
+        "percent": "Detailed Percent (50.0%)",
+        "time_remaining": "Time Remaining (4h 0m left)",
+        "full": "Full (50% • 4h 0m left)"
+      }
+    },
+    "glyph": {
+      "label": "Icon",
+      "description": "Icon to display on the bar widget"
+    },
+    "show_glyph": {
+      "label": "Show Icon",
+      "description": "Whether to display the icon alongside progress"
+    }
+  },
+  "status": {
+    "not_started": "Workday Not Started",
+    "in_progress": "Workday In Progress",
+    "completed": "Workday Complete"
+  },
+  "panel": {
+    "title": "Workday Progress",
+    "schedule": "Schedule",
+    "elapsed": "Elapsed",
+    "remaining": "Remaining",
+    "progress": "Progress"
+  }
 }
