@@ -1,0 +1,88 @@
+id = "cian-h/workday-progress"
+name = "Workday Progress"
+version = "1.0.0"
+plugin_api = 9
+author = "Cian Hughes"
+license = "MIT"
+tags = ["bar", "panel", "utility", "time"]
+icon = "briefcase"
+description = "Tracks and displays progress through the work day."
+
+[[setting]]
+key = "start_hour"
+type = "int"
+label_key = "settings.start_hour.label"
+description_key = "settings.start_hour.description"
+default = 9
+min = 0
+max = 23
+
+[[setting]]
+key = "start_minute"
+type = "int"
+label_key = "settings.start_minute.label"
+description_key = "settings.start_minute.description"
+default = 0
+min = 0
+max = 59
+
+[[setting]]
+key = "end_hour"
+type = "int"
+label_key = "settings.end_hour.label"
+description_key = "settings.end_hour.description"
+default = 17
+min = 0
+max = 23
+
+[[setting]]
+key = "end_minute"
+type = "int"
+label_key = "settings.end_minute.label"
+description_key = "settings.end_minute.description"
+default = 0
+min = 0
+max = 59
+
+[[widget]]
+id = "progress"
+entry = "widget.luau"
+
+[[widget.setting]]
+key = "display_format"
+type = "select"
+label_key = "settings.display_format.label"
+description_key = "settings.display_format.description"
+default = "compact"
+options = [
+  { value = "compact", label_key = "settings.display_format.options.compact" },
+  { value = "percent", label_key = "settings.display_format.options.percent" },
+  { value = "time_remaining", label_key = "settings.display_format.options.time_remaining" },
+  { value = "full", label_key = "settings.display_format.options.full" },
+]
+
+[[widget.setting]]
+key = "glyph"
+type = "glyph"
+label_key = "settings.glyph.label"
+description_key = "settings.glyph.description"
+default = "briefcase"
+
+[[widget.setting]]
+key = "show_glyph"
+type = "bool"
+label_key = "settings.show_glyph.label"
+description_key = "settings.show_glyph.description"
+default = true
+
+[widget.actions]
+left = "panel-toggle cian-h/workday-progress:summary"
+
+[[panel]]
+id = "summary"
+entry = "panel.luau"
+width = 380
+height = 290
+placement = "floating"
+position = "center"
+open_near_click = true

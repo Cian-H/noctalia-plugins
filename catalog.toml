@@ -1,0 +1,14 @@
+# Noctalia plugins catalog for Cian-H/noctalia-plugins
+
+[[plugin]]
+id = "cian-h/workday-progress"
+name = "Workday Progress"
+version = "1.0.0"
+updated_at = 1788448949
+added_at = 1788448949
+author = "Cian Hughes"
+license = "MIT"
+icon = "briefcase"
+description = "Tracks and displays progress through the work day."
+plugin_api = 9
+tags = ["bar", "panel", "utility", "time"]
