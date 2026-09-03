@@ -20,7 +20,6 @@ local function render()
 
   barWidget.render(ui.progress({
     progress = stats.percent / 100.0,
-    color = color,
     tooltip = tooltip,
     fill = true,
   }))
