@@ -1,6 +1,6 @@
 --!strict
 
-local calculate = require("./calculate")
+local calculate = require("./calculate.luau")
 
 local function render()
   local stats = calculate.getStats()
@@ -24,7 +24,7 @@ local function render()
             fontSize = 16,
           }),
         }),
-        ui.box({
+        ui.row({
           fill = statusColor .. "/0.2",
           radius = 6,
           paddingH = 8,
@@ -55,30 +55,29 @@ local function render()
           }),
         }),
         ui.progress({
-          value = stats.progress,
-          color = statusColor,
+          progress = stats.percent / 100.0,
+          fill = statusColor,
         }),
       }),
 
-      -- Details Box
-      ui.box({
+      -- Details
+      ui.column({
         fill = "surface_variant",
         radius = 8,
         padding = 12,
+        gap = 8,
       }, {
-        ui.column({ gap = 8 }, {
-          ui.row({ justify = "space-between" }, {
-            ui.label({ text = noctalia.tr("panel.schedule"), color = "on_surface_variant", fontSize = 13 }),
-            ui.label({ text = stats.formattedSchedule, fontWeight = "bold", fontSize = 13 }),
-          }),
-          ui.row({ justify = "space-between" }, {
-            ui.label({ text = noctalia.tr("panel.elapsed"), color = "on_surface_variant", fontSize = 13 }),
-            ui.label({ text = stats.formattedElapsed, fontWeight = "bold", fontSize = 13 }),
-          }),
-          ui.row({ justify = "space-between" }, {
-            ui.label({ text = noctalia.tr("panel.remaining"), color = "on_surface_variant", fontSize = 13 }),
-            ui.label({ text = stats.formattedRemaining, fontWeight = "bold", fontSize = 13 }),
-          }),
+        ui.row({ justify = "space-between" }, {
+          ui.label({ text = noctalia.tr("panel.schedule"), color = "on_surface_variant", fontSize = 13 }),
+          ui.label({ text = stats.formattedSchedule, fontWeight = "bold", fontSize = 13 }),
+        }),
+        ui.row({ justify = "space-between" }, {
+          ui.label({ text = noctalia.tr("panel.elapsed"), color = "on_surface_variant", fontSize = 13 }),
+          ui.label({ text = stats.formattedElapsed, fontWeight = "bold", fontSize = 13 }),
+        }),
+        ui.row({ justify = "space-between" }, {
+          ui.label({ text = noctalia.tr("panel.remaining"), color = "on_surface_variant", fontSize = 13 }),
+          ui.label({ text = stats.formattedRemaining, fontWeight = "bold", fontSize = 13 }),
         }),
       }),
     })
