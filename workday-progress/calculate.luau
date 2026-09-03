@@ -46,6 +46,15 @@ function calculate.getStats(): WorkdayStats
     sec = 0,
   })
 
+  -- Handle overnight shifts that cross midnight
+  if endSec <= startSec then
+    if now < endSec then
+      startSec = startSec - 86400
+    else
+      endSec = endSec + 86400
+    end
+  end
+
   local totalSec = math.max(1, endSec - startSec)
   local progress = 0.0
   local status: "not_started" | "in_progress" | "completed" = "in_progress"
