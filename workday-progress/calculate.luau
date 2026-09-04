@@ -33,6 +33,10 @@ function calculate.getStats(): WorkdayStats
 
   local now = os.time()
   local d = os.date("*t", now)
+  local utcDate = os.date("!*t", now)
+  -- In Luau, os.time(table) assumes the table is in UTC.
+  -- Calculate timezone offset so local schedule hours convert to correct epoch seconds.
+  local tzOffset = os.time(d) - os.time(utcDate)
 
   local startSec = os.time({
     year = d.year,
@@ -41,7 +45,7 @@ function calculate.getStats(): WorkdayStats
     hour = startH,
     min = startM,
     sec = 0,
-  })
+  }) - tzOffset
 
   local endSec = os.time({
     year = d.year,
@@ -50,7 +54,7 @@ function calculate.getStats(): WorkdayStats
     hour = endH,
     min = endM,
     sec = 0,
-  })
+  }) - tzOffset
 
   -- Handle overnight shifts that cross midnight
   if endSec <= startSec then
